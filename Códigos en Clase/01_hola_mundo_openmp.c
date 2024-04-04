@@ -7,7 +7,7 @@ int main()
 
     num_t = omp_get_num_procs();
 
-    printf("Nuestro sistema tiene %d núcleos\n\n", num_t); 
+    printf("Nuestro sistema tiene %d nucleos\n\n", num_t); 
 
     omp_set_num_threads(num_t);
     

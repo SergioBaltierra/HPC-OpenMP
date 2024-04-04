@@ -12,7 +12,7 @@ int main()
     {
         for (int j = 0; j < N; j++)
         {
-            matrizA[i][j] = 1; 
+            matrizA[i][j] = i+j; 
         }
     }
     
