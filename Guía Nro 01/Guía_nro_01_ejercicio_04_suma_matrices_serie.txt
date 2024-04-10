@@ -1,0 +1,51 @@
+DECLARAR LIBRERIAS
+
+DECLARAR VARIABLE GLOBAL N <- 10
+
+PROCEDIMIENTO sumarMatrices(matrizA, matrizB, resultado)
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            resultado[i][j] <- matrizA[i][j] + matrizB[i][j]
+        FIN PARA
+    FIN PARA
+
+    RETORNAR resultado
+FIN PROCEDIMIENTO
+
+PROCEDIMIENTO imprimirMatriz(matriz)
+    PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            IMPRIMIR matriz[i][j]
+            SI j < N-1 ENTONCES
+                IMPRIMIR "\t"
+            FIN SI
+        FIN PARA
+        IMPRIMIR "\n"
+    FIN PARA
+FIN PROCEDIMIENTO
+
+INICIO
+    DECLARAR matrizA[N][N], matrizB[N][N], resultado[N][N]
+    
+    // Inicializamos las matrices A y B con valores 1.
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            resultado[i][j] <- 0 // Inicializamos matriz resultado.
+            matrizA[i][j] <- 1  // Puedes cambiar los valores según necesites
+            matrizB[i][j] <- 1  // Puedes cambiar los valores según necesites
+        FIN PARA
+    FIN PARA
+    
+    // Sumar las matrices
+    resultado <- sumarMatrices(matrizA, matrizB, resultado)
+    
+    // Imprimir las matrices y el resultado
+    IMPRIMIR "Matriz A:\n"
+    imprimirMatriz(matrizA)
+    
+    IMPRIMIR "\nMatriz B:\n"
+    imprimirMatriz(matrizB)
+    
+    IMPRIMIR "\nResultado de la suma:\n"
+    imprimirMatriz(resultado)
+FIN

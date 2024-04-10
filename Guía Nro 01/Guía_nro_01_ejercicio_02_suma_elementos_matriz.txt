@@ -1,0 +1,52 @@
+DECLARAR LIBRERIAS
+
+DECLARAR VARIABLE GLOBAL N <- 10
+
+PROCEDIMIENTO sumarElementosMatrizParalelo(matriz)
+    resultado <- 0
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            resultado <- resultado + matriz[i][j]
+        FIN PARA
+    FIN PARALELO
+    RETORNAR resultado
+FIN PROCEDIMIENTO
+
+PROCEDIMIENTO imprimirMatriz(matriz)
+    PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            IMPRIMIR matriz[i][j]
+            SI j < N-1 ENTONCES
+                IMPRIMIR "\t"
+            FIN SI
+        FIN PARA
+        IMPRIMIR "\n"
+    FIN PARA
+FIN PROCEDIMIENTO
+
+
+INICIO
+    // Declaramos matriz
+    DECLARAR matriz[N][N]
+
+    // Declaramos variables
+    ENTERO i, j, resultado
+
+    // Inicializamos matriz con valores 1.
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            matriz[i][j] <- 1  // Puedes cambiar los valores según necesites
+        FIN PARA
+    FIN PARALELO
+
+    // Multiplicar las matrices de forma paralela
+    resultado <- sumarElementosMatrizParalelo(matriz)
+
+    // Imprimir matriz
+    IMPRIMIR "Matriz:\n"
+    imprimirMatriz(matriz)
+
+    // Imprimir resultado
+    IMPRIMIR "\nResultado es:\n"
+    IMPRIMIR resultado
+FIN

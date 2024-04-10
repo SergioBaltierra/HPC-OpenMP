@@ -1,0 +1,65 @@
+DECLARAR LIBRERIAS
+
+DECLARAR VARIABLE GLOBAL N <- 10
+
+PROCEDIMIENTO multiplicarMatrices3D(matrizA, matrizB, resultado)
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            PARA k DESDE 0 HASTA N-1 HACER
+                resultado[i][j][k] <- 0
+                PARA l DESDE 0 HASTA N-1 HACER
+                    resultado[i][j][k] <- resultado[i][j][k] + matrizA[i][j][l] * matrizB[l][j][k]
+                FIN PARA
+            FIN PARA
+        FIN PARA
+    FIN PARA
+
+    RETORNAR resultado
+FIN PROCEDIMIENTO
+
+PROCEDIMIENTO imprimirMatriz3D(matriz)
+    PARA i DESDE 0 HASTA N-1 HACER
+        IMPRIMIR "Matriz ", i + 1, ":\n"
+        PARA j DESDE 0 HASTA N-1 HACER
+            PARA k DESDE 0 HASTA N-1 HACER
+                IMPRIMIR matriz[i][j][k]
+                SI k < N-1 ENTONCES
+                    IMPRIMIR "\t"
+                FIN SI
+            FIN PARA
+            IMPRIMIR "\n"
+        FIN PARA
+        IMPRIMIR "\n"
+    FIN PARA
+FIN PROCEDIMIENTO
+
+
+INICIO
+    DECLARAR matrizA[N][N][N], matrizB[N][N][N], resultado[N][N][N]
+    DECLARAR i, j, k COMO ENTERO
+    
+    // Inicializar las matrices A y B con valores 1.
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            PARA k DESDE 0 HASTA N-1 HACER
+                resultado[i][j][k] <- 0  // Inicializamos matriz resultado.
+                matrizA[i][j][k] <- 1  // Puedes cambiar los valores según necesites
+                matrizB[i][j][k] <- 1  // Puedes cambiar los valores según necesites
+            FIN PARA
+        FIN PARA
+    FIN PARA
+
+    // Multiplicar las matrices tridimensionales
+    resultado <- multiplicarMatrices3D(matrizA, matrizB, resultado)
+
+    // Imprimir las matrices y el resultado
+    IMPRIMIR "Matriz A:\n"
+    imprimirMatriz3D(matrizA)
+
+    IMPRIMIR "\nMatriz B:\n"
+    imprimirMatriz3D(matrizB)
+
+    IMPRIMIR "\nResultado de la multiplicación:\n"
+    imprimirMatriz3D(resultado)
+
+FIN

@@ -1,0 +1,76 @@
+DECLARAR LIBRERIAS
+
+DECLARAR VARIABLE GLOBAL N <- 10
+
+PROCEDIMIENTO multiplicarMatrizVectorParalelo(matriz, vector)
+    resultado[N]
+    PARA i DESDE 0 HASTA N-1 HACER
+        resultado[i] <- 0
+    FIN PARA
+
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            resultado[i] <- matriz[i][j] * vector[j]
+        FIN PARA
+    FIN PARALELO
+
+    RETORNAR resultado
+FIN PROCEDIMIENTO
+
+PROCEDIMIENTO imprimirMatriz(matriz)
+    PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            IMPRIMIR matriz[i][j]
+            SI j < N-1 ENTONCES
+                IMPRIMIR "\t"
+            FIN SI
+        FIN PARA
+        IMPRIMIR "\n"
+    FIN PARA
+FIN PROCEDIMIENTO
+
+PROCEDIMIENTO imprimirVector(vector)
+    PARA i DESDE 0 HASTA N-1 HACER   
+        IMPRIMIR vector[i]
+        SI i < N-1 ENTONCES
+            IMPRIMIR "\t"
+        FIN SI
+    FIN PARA
+    IMPRIMIR "\n"
+FIN PROCEDIMIENTO
+
+
+INICIO
+    // Declaramos matriz y vector
+    DECLARAR matriz[N][N], vector[N]
+
+    // Declaramos variables
+    ENTERO i, j, resultado
+
+    // Inicializamos matriz con valores 1.
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        PARA j DESDE 0 HASTA N-1 HACER
+            matriz[i][j] <- 1  // Puedes cambiar los valores según necesites
+        FIN PARA
+    FIN PARALELO
+
+    // Inicializamos vector con valores 1.
+    PARALELO PARA i DESDE 0 HASTA N-1 HACER
+        vector[i] <- 1  // Puedes cambiar los valores según necesites
+    FIN PARALELO
+
+    // Multiplicar las matrices de forma paralela
+    resultado <- multiplicarMatrizVectorParalelo(matriz, vector)
+
+    // Imprimir matriz
+    IMPRIMIR "Matriz:\n"
+    imprimirMatriz(matriz)
+
+    // Imprimir vector
+    IMPRIMIR "Vector:\n"
+    imprimirVector(vector)
+
+    // Imprimir resultado
+    IMPRIMIR "\nResultado es:\n"
+    IMPRIMIR resultado
+FIN
